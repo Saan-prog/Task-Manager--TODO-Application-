@@ -21,7 +21,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://task-manager-todo-application-frontend.onrender.com/"
+    "https://task-manager-todo-application-frontend.onrender.com"
     
   ],
   credentials: true
