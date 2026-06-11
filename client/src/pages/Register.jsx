@@ -47,7 +47,8 @@ const Register = () => {
             { label: 'Very strong', color: '#16a34a' },
         ]
 
-        const lvl = levels[Math.min(score - 1, 4)]
+        const index = Math.max(0, Math.min(score - 1, 4));
+        const lvl = levels[index];
         setStrength({ score, label: lvl.label, color: lvl.color })
     }
 
