@@ -20,7 +20,8 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://your-frontend-name.onrender.com" 
+    "http://localhost:5174",
+    // "https://your-frontend-name.onrender.com" 
   ],
   credentials: true
 }));
@@ -30,7 +31,7 @@ app.use(express.static("public"));
 app.use("/api/users", userRoutes);
 app.use("/api/tasks", taskRoutes);
 
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
     res.send("Test... API running")
 });
 app.use(errorHandler);
