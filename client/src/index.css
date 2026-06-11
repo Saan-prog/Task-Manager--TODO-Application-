@@ -1,0 +1,715 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-page:          #1c1f2e;
+    --bg-card:          #32374e;
+    --bg-input:         #1a1d2e;
+    --bg-left-panel:    #1a1d2e;
+    --border:           #495175;
+    --primary:          #a78bfa;
+    --primary-hover:    #c4b5fd;
+    --primary-glow:     rgba(167, 139, 250, 0.12);
+    --primary-fg:       #1a1d2e;
+    --text-bright:      #e2e0f5;
+    --text-muted:       #b4b6d9;
+    --text-faint:       #6b6d8a;
+    --text-placeholder: #3d3f5c;
+    --icon-color:       #6b6d8a;
+    --danger:           #f87171;
+    --danger-bg:        rgba(248, 113, 113, 0.1);
+    --success:          #6ee7b7;
+    --success-bg:       rgba(110, 231, 183, 0.1);
+    --warning:          #fbbf24;
+    --warning-bg:       rgba(251, 191, 36, 0.1);
+}
+
+@layer components {
+
+    /* ── Page background ── */
+    .container-center {
+        @apply min-h-screen flex items-center justify-center p-4;
+        background: var(--bg-page);
+    }
+
+    .dashboard-page {
+        @apply min-h-screen;
+        background: var(--bg-page);
+    }
+
+    /* ── Auth wrapper ── */
+    .auth-wrapper {
+        @apply flex w-full max-w-3xl rounded-2xl overflow-hidden;
+        background: var(--bg-card);
+        border: 0.5px solid var(--border);
+    }
+
+    /* ── Left panel ── */
+    .auth-panel-left {
+        @apply hidden md:flex flex-col justify-between w-56 p-8 flex-shrink-0;
+        background: var(--bg-left-panel);
+    }
+
+    .auth-brand {
+        @apply flex items-center gap-2;
+    }
+
+    .auth-brand-icon {
+        @apply w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold;
+        background: var(--primary);
+        color: var(--primary-fg);
+    }
+
+    .auth-brand-name {
+        @apply font-semibold text-sm;
+        color: var(--text-bright);
+    }
+
+    .auth-panel-content {
+        @apply flex flex-col gap-3;
+    }
+
+    .auth-panel-title {
+        @apply text-lg font-semibold leading-snug;
+        color: var(--text-bright);
+        font-family: Georgia, serif;
+    }
+
+    .auth-panel-sub {
+        @apply text-xs leading-relaxed;
+        color: var(--text-faint);
+    }
+
+    .auth-features {
+        @apply flex flex-col gap-3 mt-2;
+        color: var(--text-muted);
+    }
+
+    .auth-feature-item {
+        @apply flex items-center gap-2 text-xs;
+        color: var(--text-muted);
+    }
+
+    /* ── Right panel ── */
+    .auth-panel-right {
+        @apply flex-1 p-8 flex flex-col gap-5;
+    }
+
+    .auth-form-header {
+        @apply flex flex-col gap-1;
+    }
+
+    .auth-title {
+        @apply text-xl font-semibold tracking-tight;
+        color: var(--text-bright);
+    }
+
+    .auth-subtitle {
+        @apply text-sm;
+        color: var(--text-faint);
+    }
+
+    .auth-form {
+        @apply flex flex-col gap-4;
+    }
+
+    .auth-switch {
+        @apply text-xs text-center;
+        color: var(--text-faint);
+    }
+
+    .auth-switch-link {
+        color: var(--primary);
+        @apply font-medium transition hover:opacity-80;
+    }
+
+    .auth-terms {
+        @apply text-xs leading-relaxed;
+        color: var(--text-faint);
+    }
+
+    .auth-terms a {
+        color: var(--primary);
+    }
+
+    /* ── Form elements ── */
+    .form-group {
+        @apply flex flex-col gap-1.5;
+    }
+
+    .form-label {
+        @apply text-xs font-semibold uppercase tracking-widest;
+        color: var(--text-muted);
+    }
+
+    .form-row {
+        @apply flex items-center justify-between;
+    }
+
+    /* ── Input ── */
+    .input {
+        @apply w-full px-4 py-2.5 rounded-xl text-sm transition duration-150;
+        background: var(--bg-input);
+        border: 0.5px solid var(--border);
+        color: var(--text-bright);
+    }
+
+    .input::placeholder {
+        color: var(--text-placeholder);
+    }
+
+    .input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px var(--primary-glow);
+        outline: none;
+    }
+
+    .input:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .input-with-icon  { @apply pl-10; }
+    .input-with-toggle { @apply pr-10; }
+
+    .input-icon-wrapper { @apply relative; }
+
+    .input-icon {
+        @apply absolute left-3 top-1/2 -translate-y-1/2 text-base pointer-events-none select-none;
+        color: var(--icon-color);
+    }
+
+    .password-toggle {
+        @apply absolute right-3 top-1/2 -translate-y-1/2
+        bg-transparent border-none cursor-pointer hover:opacity-70 transition;
+        color: var(--icon-color);
+        font-size: 18px;
+    }
+
+    /* ── Dashboard input (lighter feel) ── */
+    .dash-input {
+        @apply w-full px-3 py-2.5 rounded-xl text-sm transition duration-150;
+        background: var(--bg-input);
+        border: 0.5px solid var(--border);
+        color: var(--text-bright);
+    }
+
+    .dash-input::placeholder { color: var(--text-placeholder); }
+
+    .dash-input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px var(--primary-glow);
+        outline: none;
+    }
+
+    /* ── Button ── */
+    .btn {
+        @apply w-full py-2.5 rounded-xl font-bold text-sm transition duration-200;
+        background: var(--primary);
+        color: var(--primary-fg);
+    }
+
+    .btn:hover   { background: var(--primary-hover); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* ── Dashboard action buttons ── */
+    .btn-primary {
+        @apply px-4 py-2 rounded-xl text-sm font-semibold transition duration-200;
+        background: var(--primary);
+        color: var(--primary-fg);
+    }
+    .btn-primary:hover   { background: var(--primary-hover); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-ghost {
+        @apply px-4 py-2 rounded-xl text-sm font-medium transition duration-200;
+        background: transparent;
+        border: 0.5px solid var(--border);
+        color: var(--text-muted);
+    }
+    .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+    .btn-danger {
+        @apply px-4 py-2 rounded-xl text-sm font-medium transition duration-200;
+        background: var(--danger-bg);
+        border: 0.5px solid var(--danger);
+        color: var(--danger);
+    }
+    .btn-danger:hover { opacity: 0.8; }
+
+    /* ── Card ── */
+    .card {
+        @apply rounded-2xl p-6;
+        background: var(--bg-card);
+        border: 0.5px solid var(--border);
+    }
+
+    /* ── Task card ── */
+    .task-card {
+        @apply rounded-xl p-4 flex justify-between items-start gap-4 transition duration-150;
+        background: var(--bg-card);
+        border: 0.5px solid var(--border);
+    }
+
+    .task-card:hover {
+        border-color: #3d3f5c;
+    }
+
+    /* ── Icon buttons (task actions) ── */
+    .icon-btn {
+        @apply p-2 rounded-lg transition duration-150;
+        color: var(--text-muted);
+        background: transparent;
+    }
+
+    .icon-btn:hover { background: var(--bg-input); color: var(--text-bright); }
+    .icon-btn.danger:hover { color: var(--danger); }
+    .icon-btn.success:hover { color: var(--success); }
+    .icon-btn.edit:hover { color: var(--primary); }
+
+    /* ── Status badges ── */
+    .badge-pending {
+        @apply px-2.5 py-1 rounded-full text-xs font-medium;
+        background: var(--warning-bg);
+        color: var(--warning);
+        border: 0.5px solid rgba(251,191,36,0.3);
+    }
+
+    .badge-completed {
+        @apply px-2.5 py-1 rounded-full text-xs font-medium;
+        background: var(--success-bg);
+        color: var(--success);
+        border: 0.5px solid rgba(110,231,183,0.3);
+    }
+
+    /* ── Alert (inline) ── */
+    .alert {
+        @apply flex items-center gap-2 px-4 py-3 rounded-xl text-sm;
+    }
+
+    .alert-error {
+        background: var(--danger-bg);
+        border: 0.5px solid var(--danger);
+        color: var(--danger);
+    }
+
+    .alert-success {
+        background: var(--success-bg);
+        border: 0.5px solid var(--success);
+        color: var(--success);
+    }
+
+    /* ── Popup toast ── */
+    .popup-toast {
+        @apply fixed top-5 right-5 z-50 px-4 py-3 rounded-xl text-sm
+        font-medium flex items-center gap-2 animate-fade-in;
+    }
+
+    .popup-success {
+        background: var(--success-bg);
+        border: 0.5px solid var(--success);
+        color: var(--success);
+    }
+
+    .popup-error {
+        background: var(--danger-bg);
+        border: 0.5px solid var(--danger);
+        color: var(--danger);
+    }
+
+    /* ── Checkbox ── */
+    .checkbox-label {
+        @apply flex items-center gap-2 text-sm cursor-pointer select-none;
+        color: var(--text-faint);
+    }
+
+    .checkbox {
+        @apply w-4 h-4 rounded cursor-pointer;
+        accent-color: var(--primary);
+    }
+
+    .forgot-link {
+        @apply text-xs font-medium transition hover:opacity-80;
+        color: var(--primary);
+    }
+
+    /* ── Spinner ── */
+    .spinner {
+        @apply inline-block w-4 h-4 border-2 rounded-full animate-spin;
+        border-color: var(--primary-fg);
+        border-top-color: transparent;
+    }
+
+    .btn-loading {
+        @apply flex items-center justify-center gap-2;
+    }
+
+    /* ── Strength bar ── */
+    .strength-wrapper {
+        @apply flex items-center gap-3 mt-1.5;
+    }
+
+    .strength-bar {
+        @apply flex-1 h-1.5 rounded-full overflow-hidden;
+        background: var(--border);
+    }
+
+    .strength-fill {
+        @apply h-full rounded-full transition-all duration-300;
+    }
+
+    .strength-label {
+        @apply text-xs font-medium w-20 text-right flex-shrink-0;
+    }
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in { animation: fadeIn 0.25s ease-out; }
+
+/* ═══════════════════════════════
+   DASHBOARD LAYOUT
+═══════════════════════════════ */
+
+.dashboard-page {
+    min-height: 100vh;
+    background: var(--bg-page);
+}
+
+/* ── Single Navbar ── */
+.dash-nav {
+    height: 70px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    
+    top: 0;
+    z-index: 40;
+    background: transparent;
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+}
+.dash-nav-center{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.dash-nav-right {
+    display: flex;
+    align-items: center;
+    gap:8px;
+    margin-left: auto;
+}
+
+.dash-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.dash-brand-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: var(--primary-fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.dash-brand-name {
+    color: var(--text-bright);
+    font-weight: 600;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* Search inside navbar */
+.dash-search-wrap {
+    flex: 1;
+    position: relative;
+    max-width: 360px;
+}
+
+.dash-search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-faint);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.dash-search-input {
+    width: 100%;
+    background: var(--bg-input);
+    border: 0.9px solid var(--border);
+    border-radius: 10px;
+    padding: 7px 12px 7px 32px;
+    color: var(--text-bright);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.dash-search-input::placeholder { color: var(--text-placeholder); }
+
+.dash-search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* Right section of navbar */
+.dash-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.dash-filter-select {
+    background: var(--bg-input);
+    border: 0.9px solid var(--border);
+    border-radius: 10px;
+    padding: 6px 10px;
+    color: var(--text-muted);
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.dash-user-chip {
+    
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px 7px 13px;
+    border-radius: 16px;
+    background: var(--bg-input);
+    border: 0.9px solid var(--border);
+}
+
+.dash-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: var(--primary-fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dash-username {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.dash-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: var(--danger-bg);
+    border: 0.5px solid var(--danger);
+    color: var(--danger);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.dash-logout-btn:hover { opacity: 0.8; }
+
+/* ── Page body ── */
+.dash-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Stats row */
+.dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.dash-stat-card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+}
+
+.dash-stat-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.dash-stat-label {
+    color: var(--text-faint);
+    font-size: 11px;
+}
+
+.dash-stat-icon {
+    color: var(--primary);
+    font-size: 16px;
+}
+
+.dash-stat-value {
+    color: var(--text-bright);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+/* Form card */
+.dash-form-card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dash-form-title {
+    color: var(--text-bright);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dash-form-title i { color: var(--primary); }
+
+.dash-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dash-form-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Task list */
+.dash-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dash-list-title {
+    color: var(--text-bright);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.dash-list-count {
+    color: var(--text-faint);
+    font-size: 12px;
+}
+
+.dash-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dash-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 48px 0;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+}
+
+/* Task card */
+.task-card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.15s;
+}
+
+.task-card:hover { border-color: #3d3f5c; }
+
+.task-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.task-title {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-desc {
+    color: var(--text-faint);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.task-date {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: var(--text-faint);
+    font-size: 11px;
+}
+
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
