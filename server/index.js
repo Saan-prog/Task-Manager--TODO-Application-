@@ -18,13 +18,16 @@ const __dirname = path.dirname(__filename);
 // middilewares
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
+  origin: [
+    "http://localhost:5173",
+    "https://your-frontend-name.onrender.com" 
+  ],
+  credentials: true
 }));
 app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-app.use("/api", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/tasks", taskRoutes);
 
 app.get("/test", (req, res) => {
