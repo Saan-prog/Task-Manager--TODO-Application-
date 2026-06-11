@@ -77,8 +77,8 @@ After deployment update this to the live Render backend URL.
 
 | Page | Route | Protected |
 |------|-------|-----------|
-| Register | `/register` | No |
-| Login | `/login` | No |
+| Register | `users/register` | No |
+| Login | `users/login` | No |
 | Dashboard | `/dashboard` | Yes |
 
 `ProtectedRoutes.jsx` handles route protection — if you are not logged in
@@ -182,7 +182,8 @@ your live backend URL, not `localhost`.
 
 ## Deployment
 
-See the root [README.md](../README.md) for full deployment steps on Render.
+rendered on render.com 
+live link: https://task-manager-todo-application-frontend.onrender.com/
 
 ---
 

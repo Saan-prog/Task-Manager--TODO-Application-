@@ -174,7 +174,8 @@ npm run dev    # run with nodemon
 
 ## Deployment
 
-See the root [README.md](../README.md) for full deployment steps on Render.
+renderd on render.com
+live link: https://task-manager-todo-application-mern.onrender.com/
 
 ---
 
