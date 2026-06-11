@@ -24,8 +24,8 @@ api.interceptors.request.use(
     }
 );
 
-export const register = (userData) => api.post('/register', userData);
-export const login = (userData) => api.post('/login', userData);
+export const register = (userData) => api.post('users/register', userData);
+export const login = (userData) => api.post('users/login', userData);
 
 export const getTasks = () => api.get('/tasks/allPosts');
 export const createTask = (taskData) => api.post('/tasks/add', taskData);
